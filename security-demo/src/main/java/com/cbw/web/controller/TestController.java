@@ -4,12 +4,15 @@ import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbw.dto.User;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/user")
@@ -22,7 +25,8 @@ public class TestController {
 		return "hello spring security";
 	}
 
-	@PutMapping("/{id:\\d+}")
+	@PutMapping(value="/update")
+	@ApiOperation("修改对象")
 	public Object update(@Valid @RequestBody User user,BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
@@ -39,6 +43,25 @@ public class TestController {
 		System.out.println(user.getPassword());
 		System.out.println(user.getBirthday());
 
+		user.setId("1");
+		
+		return user;
+	}
+	
+	@PostMapping(value="/get")
+	@ApiOperation("获取对象")
+	public User get(@Valid @RequestBody User user,BindingResult bindingResult) {
+		
+		user.setId("1");
+		
+		return user;
+	}
+	
+	
+	@PostMapping(value="/delete")
+	@ApiOperation("删除对象")
+	public Object delete(@Valid @RequestBody User user,BindingResult bindingResult) {
+		
 		user.setId("1");
 		
 		return user;
