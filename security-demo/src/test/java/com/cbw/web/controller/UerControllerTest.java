@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @RunWith(SpringRunner.class)//进行测试
 @SpringBootTest
 public class UerControllerTest {
