@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 
+	//在这里配置,yaml文件没有用
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
