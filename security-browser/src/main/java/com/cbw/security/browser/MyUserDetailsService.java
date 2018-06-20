@@ -1,4 +1,4 @@
-package com.cbw.security;
+package com.cbw.security.browser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,5 +33,10 @@ public class MyUserDetailsService  implements UserDetailsService{
 		return new User(userName, password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
 		
 		//设置用户名和密码
+		//都是123456;但是两次不一样
+		//$2a$10$lImH0z3WlkNfxDB4zrzpi./Y/yeaz1kZUH5nTol7Cbk0Bja8ZkWIG
+		//$2a$10$1i6qROT8S/CMECQHQDRxnOMUHiCAJW0V4TzvLgHhHsOzYOpD6kqou
+		
+		
 	}
 }

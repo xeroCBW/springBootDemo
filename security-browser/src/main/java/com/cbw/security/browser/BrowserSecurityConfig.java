@@ -1,11 +1,14 @@
-package com.cbw.security;
+package com.cbw.security.browser;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import com.cbw.security.core.SecurityProperties;
 
 /**
  * 设置认证拦截
@@ -21,6 +24,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	//自动从properties 来注解
+	@Autowired
+	private SecurityProperties securityProperties;
 
 	//在这里配置,yaml文件没有用
 	@Override
@@ -28,11 +35,28 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		//设置认证
 		
+//		http.formLogin()
+//		.and()
+//		.authorizeRequests()
+//		.anyRequest()
+//		.authenticated();
+		
+		
+		//设置登录
+		
 		http.formLogin()
+		.loginPage("/authentication/require")
+		.loginProcessingUrl("/authentication/form")
+//	http.httpBasic()
 		.and()
 		.authorizeRequests()
+		.antMatchers("/authentication/require",
+				securityProperties.getBrowser().getLoginPage()).permitAll()
 		.anyRequest()
-		.authenticated();
+		.authenticated()
+		.and()
+		.csrf().disable();
+		
 	}
 	
 	
