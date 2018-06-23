@@ -1,10 +1,13 @@
 package com.cbw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbw.dto.User;
+import com.cbw.exception.MyException;
+import com.cbw.exception.OtherException;
 import com.cbw.service.UserService;
 import com.cbw.util.JSONResultUtil;
 
@@ -56,5 +59,7 @@ public class UserController {
 
 		return userService.updateByPrimaryKey(record);
 	}
+	
+
 
 }
