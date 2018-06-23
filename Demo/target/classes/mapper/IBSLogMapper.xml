@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbw.mappers.IBSLogMapper">
+  <resultMap id="BaseResultMap" type="com.cbw.dto.IBSLog">
+    <id column="LOG_ID" jdbcType="INTEGER" property="logId" />
+    <id column="LOG_DATE" jdbcType="TIMESTAMP" property="logDate" />
+    <result column="LOG_FILE" jdbcType="VARCHAR" property="logFile" />
+    <result column="LOG_LINE" jdbcType="VARCHAR" property="logLine" />
+    <result column="LOG_THREAD" jdbcType="VARCHAR" property="logThread" />
+    <result column="LOG_LEVEL" jdbcType="VARCHAR" property="logLevel" />
+    <result column="LOG_MESSAGE" jdbcType="VARCHAR" property="logMessage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOG_ID, LOG_DATE, LOG_FILE, LOG_LINE, LOG_THREAD, LOG_LEVEL, LOG_MESSAGE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from IBS_LOG
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+      and LOG_DATE = #{logDate,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from IBS_LOG
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+      and LOG_DATE = #{logDate,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.cbw.dto.IBSLog">
+    insert into IBS_LOG (LOG_ID, LOG_DATE, LOG_FILE, 
+      LOG_LINE, LOG_THREAD, LOG_LEVEL, 
+      LOG_MESSAGE)
+    values (#{logId,jdbcType=INTEGER}, #{logDate,jdbcType=TIMESTAMP}, #{logFile,jdbcType=VARCHAR}, 
+      #{logLine,jdbcType=VARCHAR}, #{logThread,jdbcType=VARCHAR}, #{logLevel,jdbcType=VARCHAR}, 
+      #{logMessage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cbw.dto.IBSLog">
+    insert into IBS_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        LOG_ID,
+      </if>
+      <if test="logDate != null">
+        LOG_DATE,
+      </if>
+      <if test="logFile != null">
+        LOG_FILE,
+      </if>
+      <if test="logLine != null">
+        LOG_LINE,
+      </if>
+      <if test="logThread != null">
+        LOG_THREAD,
+      </if>
+      <if test="logLevel != null">
+        LOG_LEVEL,
+      </if>
+      <if test="logMessage != null">
+        LOG_MESSAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="logDate != null">
+        #{logDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logFile != null">
+        #{logFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logLine != null">
+        #{logLine,jdbcType=VARCHAR},
+      </if>
+      <if test="logThread != null">
+        #{logThread,jdbcType=VARCHAR},
+      </if>
+      <if test="logLevel != null">
+        #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logMessage != null">
+        #{logMessage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cbw.dto.IBSLog">
+    update IBS_LOG
+    <set>
+      <if test="logFile != null">
+        LOG_FILE = #{logFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logLine != null">
+        LOG_LINE = #{logLine,jdbcType=VARCHAR},
+      </if>
+      <if test="logThread != null">
+        LOG_THREAD = #{logThread,jdbcType=VARCHAR},
+      </if>
+      <if test="logLevel != null">
+        LOG_LEVEL = #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logMessage != null">
+        LOG_MESSAGE = #{logMessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+      and LOG_DATE = #{logDate,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cbw.dto.IBSLog">
+    update IBS_LOG
+    set LOG_FILE = #{logFile,jdbcType=VARCHAR},
+      LOG_LINE = #{logLine,jdbcType=VARCHAR},
+      LOG_THREAD = #{logThread,jdbcType=VARCHAR},
+      LOG_LEVEL = #{logLevel,jdbcType=VARCHAR},
+      LOG_MESSAGE = #{logMessage,jdbcType=VARCHAR}
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+      and LOG_DATE = #{logDate,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

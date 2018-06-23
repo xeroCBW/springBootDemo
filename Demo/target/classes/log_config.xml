@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="10 seconds">
+
+	<contextName>pmg_ifdp</contextName>
+	
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	
+	 <!-- 文件输出格式 -->
+    <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
+	
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${PATTERN}</pattern>
+		</layout>
+	</appender>
+	
+	
+	
+	<appender name="ifdpWeb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--<Encoding>UTF-8</Encoding>-->
+		<File>${LOG_PATH}/ifdpWeb.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_PATH}/ifdpWeb.%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>100MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${PATTERN}</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="errLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+		<File>${LOG_PATH}/error.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>100MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${PATTERN}</pattern>
+		</layout>
+	</appender>
+
+<!-- 设置layout -->	
+	<appender name="db-classic-mysql" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://120.77.223.13:3306/demo</url>
+            <user>root</user>
+            <password>19920202qwer</password>
+        </connectionSource>
+    </appender>
+			
+	<root level="info">
+	  <appender-ref ref="console" />
+	  <appender-ref ref="ifdpWeb" />
+	  <appender-ref ref="errLog" />
+<appender-ref ref="db-classic-mysql"/>
+	</root>	
+	
+	
+	
+	<!-- debug 级别数据太多,还是用info -->
+	
+<!-- 	<root level="debug"> -->
+<!-- 	  <appender-ref ref="console" /> -->
+<!-- 	  <appender-ref ref="ifdpWeb" /> -->
+<!-- 	  <appender-ref ref="errLog" /> -->
+<!-- 	  <appender-ref ref="db-classic-mysql"/> -->
+<!-- 	</root>	 -->
+	
+	
+	<!--<logger name="com.omcube.iempmg" level="debug" additivity="false">
+        <appender-ref ref="ifdpWeb"/>
+    </logger> -->
+	
+	
+	<!-- 配置日志级别 -->
+	<!-- DEBUG < INFO < WARN < ERROR < FATAL -->
+<!-- 	<logger name="com.cbw.mapper" level="debug" />设置mapper -->
+<!-- 	<logger name="com.cbw.service" level="debug" />设置mapper -->
+<!-- 	<logger name="com.cbw.controller" level="debug" />设置controller -->
+
+	<!-- 设置记录所有的日志 -->
+	<logger name="com.cbw" level="debug" />
+
+	<logger name="org.springframework.web" level="info" />
+	<logger name="org.springframework.security" level="info" />
+		
+</configuration>
