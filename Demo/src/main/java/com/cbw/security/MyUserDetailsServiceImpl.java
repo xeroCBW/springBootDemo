@@ -37,6 +37,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
 		//遇到两个一样的user的时候,需要将user设置成username
 		com.cbw.dto.User user = userMapper.selectByUsername(username);
 		String password = user.getPassword();
+		//这个设置是使用PasswordEncoder这个bean
 		password = passwordEncoder.encode(password);
 		
 		//根据用户名查找用户信息
