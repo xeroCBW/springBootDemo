@@ -26,3 +26,8 @@
 #### 跳转到自定义的界面上
 
 ![](https://upload-images.jianshu.io/upload_images/874748-f3efb058e65d36fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+注意:
+
+跳转到自定义界面上,一定要将请求后面加上html;否者会一律认为是普通的json请求
