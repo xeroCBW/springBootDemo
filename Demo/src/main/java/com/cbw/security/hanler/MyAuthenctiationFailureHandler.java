@@ -47,6 +47,8 @@ public class MyAuthenctiationFailureHandler extends SimpleUrlAuthenticationFailu
 		
 			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			response.setContentType("application/json;charset=UTF-8");
+			
+			//设置下,不把所有的消息都放出去,留一部分消息
 			response.getWriter().write(objectMapper.writeValueAsString(exception));
 		
 	}

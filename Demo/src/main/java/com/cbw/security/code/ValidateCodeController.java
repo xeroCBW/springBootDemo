@@ -1,4 +1,4 @@
-package com.cbw.security;
+package com.cbw.security.code;
 
 import java.awt.Color;
 import java.awt.Font;

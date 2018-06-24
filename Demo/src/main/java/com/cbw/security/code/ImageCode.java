@@ -1,4 +1,4 @@
-package com.cbw.security;
+package com.cbw.security.code;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;

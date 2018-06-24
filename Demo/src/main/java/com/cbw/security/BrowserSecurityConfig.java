@@ -7,8 +7,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
+import com.cbw.security.code.ValidateCodeFilter;
 import com.cbw.security.hanler.MyAuthenctiationFailureHandler;
 import com.cbw.security.hanler.MyAuthenticationSuccessHandler;
 
@@ -88,7 +90,34 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 //		;
 		
 		
-		http.formLogin()
+//		http.formLogin()
+//		.loginPage("/authentication/require")
+//		.loginProcessingUrl("/authentication/form")
+//		.successHandler(myAuthenticationSuccessHandler)//设置登录成功的handler
+//		.failureHandler(myAuthenctiationFailureHandler)//设置登录失败的handler
+////	http.httpBasic()
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/authentication/require","/login.html","/code/image")//让请求过去,否者一直会重定向,导致重定向过多,反而过不去
+//		.permitAll()
+//		.anyRequest()
+//		.authenticated()
+//		.and()//跨站防护的功能去掉
+//		.csrf()
+//		.disable()
+//		;
+		
+		
+		
+		//设置错误的过滤器
+		
+		
+		ValidateCodeFilter validateCodeFilter =  new  ValidateCodeFilter();
+		validateCodeFilter.setAuthenticationFailureHandler(myAuthenctiationFailureHandler);
+		
+		http
+		.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+		.formLogin()
 		.loginPage("/authentication/require")
 		.loginProcessingUrl("/authentication/form")
 		.successHandler(myAuthenticationSuccessHandler)//设置登录成功的handler

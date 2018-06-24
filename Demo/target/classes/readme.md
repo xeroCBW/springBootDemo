@@ -59,3 +59,15 @@
 1. 放开权限
 2. login.html进行图片的请求
 
+
+### 增加一个过滤器,增加过滤器来搞验证码
+
+1. 创建过滤器validateCodeFilter
+2. 创建一个exception，继承于authencation这个过滤器
+3. 在BrowserSecurityConfig中加上过滤器validateCodeFilter,并且设置失败的filter
+
+### 优化
+设置failException 不把所有的数据都放出去,只是留一部分数据;全部出去数据太多了
+
+
+
