@@ -91,22 +91,22 @@
 			
 			<!-- 设置security social 并不是security -->
 			
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.social</groupId> -->
-<!-- 			<artifactId>spring-social-config</artifactId> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.social</groupId> -->
-<!-- 			<artifactId>spring-social-core</artifactId> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.social</groupId> -->
-<!-- 			<artifactId>spring-social-security</artifactId> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.social</groupId> -->
-<!-- 			<artifactId>spring-social-web</artifactId> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-web</artifactId>
+		</dependency>
 		
 		<!-- 设置浏览器 -->
 

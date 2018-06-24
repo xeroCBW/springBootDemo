@@ -96,7 +96,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 //	http.httpBasic()
 		.and()
 		.authorizeRequests()
-		.antMatchers("/authentication/require","/login.html")//让请求过去,否者一直会重定向,导致重定向过多,反而过不去
+		.antMatchers("/authentication/require","/login.html","/code/image")//让请求过去,否者一直会重定向,导致重定向过多,反而过不去
 		.permitAll()
 		.anyRequest()
 		.authenticated()
