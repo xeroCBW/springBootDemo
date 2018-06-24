@@ -1,4 +1,4 @@
-package com.cbw;
+package com.cbw.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
