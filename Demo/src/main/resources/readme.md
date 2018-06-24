@@ -31,3 +31,14 @@
 注意:
 
 跳转到自定义界面上,一定要将请求后面加上html;否者会一律认为是普通的json请求
+
+
+#### 认证成功,或者失败的处理
+
+1. 自定义成功的handler
+
+把成功结果写成一个string,使用objectMapper
+把自己写的successhandler注入进来
+
+
+2. 自定义失败的handler

@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.cbw.security.hanler.MyAuthenticationSuccessHandler;
+
 /**
  * 设置认证拦截
  * @author cbw
@@ -28,6 +30,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 	//自动从properties 来注解
 	@Autowired
 	private SecurityProperties securityProperties;
+	
+	
+	@Autowired
+	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
 
 	//在这里配置,yaml文件没有用
 	@Override
@@ -62,9 +68,26 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 //		.disable()
 //		;
 		
+//		http.formLogin()
+//		.loginPage("/authentication/require")
+//		.loginProcessingUrl("/authentication/form")
+////	http.httpBasic()
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/authentication/require","/login.html")//让请求过去,否者一直会重定向,导致重定向过多,反而过不去
+//		.permitAll()
+//		.anyRequest()
+//		.authenticated()
+//		.and()//跨站防护的功能去掉
+//		.csrf()
+//		.disable()
+//		;
+		
+		
 		http.formLogin()
 		.loginPage("/authentication/require")
 		.loginProcessingUrl("/authentication/form")
+		.successHandler(myAuthenticationSuccessHandler)//设置登录成功的handler
 //	http.httpBasic()
 		.and()
 		.authorizeRequests()
@@ -76,7 +99,6 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.csrf()
 		.disable()
 		;
-		
 	}
 	
 	
