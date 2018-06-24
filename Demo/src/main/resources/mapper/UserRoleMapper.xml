@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbw.mappers.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.cbw.dto.UserRole">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="rid" jdbcType="BIGINT" property="rid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `uid`, rid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USER_ROLE
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from USER_ROLE
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cbw.dto.UserRole">
+    insert into USER_ROLE (id, `uid`, rid)
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cbw.dto.UserRole">
+    insert into USER_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="rid != null">
+        rid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cbw.dto.UserRole">
+    update USER_ROLE
+    <set>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="rid != null">
+        rid = #{rid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cbw.dto.UserRole">
+    update USER_ROLE
+    set `uid` = #{uid,jdbcType=BIGINT},
+      rid = #{rid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

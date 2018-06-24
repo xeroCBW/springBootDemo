@@ -10,7 +10,6 @@ import com.cbw.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	
 	@Autowired
 	private UserMapper userMapper;
 

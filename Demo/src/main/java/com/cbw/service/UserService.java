@@ -4,7 +4,7 @@ import com.cbw.dto.User;
 
 public interface UserService {
 
-	  int deleteByPrimaryKey(Long uid);
+	   int deleteByPrimaryKey(Long uid);
 
 	    int insert(User record);
 

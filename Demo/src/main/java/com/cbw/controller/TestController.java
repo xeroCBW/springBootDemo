@@ -8,7 +8,11 @@ public class TestController {
 
 	@RequestMapping("/")
 	public String home() {
+		
+
+//		return "home";
 		return "redirect:/index.html";
+		
 	}
 
 	@RequestMapping("/test")

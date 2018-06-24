@@ -5,11 +5,9 @@ import java.io.Serializable;
 public class User implements Serializable {
     private Long uid;
 
-    private String name;
+    private String username;
 
-    private Integer age;
-
-    private String sex;
+    private String password;
 
     private static final long serialVersionUID = 1L;
 
@@ -21,28 +19,20 @@ public class User implements Serializable {
         this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
-    public Integer getAge() {
-        return age;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     @Override
@@ -52,9 +42,8 @@ public class User implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", uid=").append(uid);
-        sb.append(", name=").append(name);
-        sb.append(", age=").append(age);
-        sb.append(", sex=").append(sex);
+        sb.append(", username=").append(username);
+        sb.append(", password=").append(password);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
