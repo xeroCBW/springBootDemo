@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.cbw.security.hanler.MyAuthenctiationFailureHandler;
 import com.cbw.security.hanler.MyAuthenticationSuccessHandler;
 
 /**
@@ -34,6 +35,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+	
+	@Autowired
+	private MyAuthenctiationFailureHandler myAuthenctiationFailureHandler;
 
 	//在这里配置,yaml文件没有用
 	@Override
@@ -88,6 +92,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginPage("/authentication/require")
 		.loginProcessingUrl("/authentication/form")
 		.successHandler(myAuthenticationSuccessHandler)//设置登录成功的handler
+		.failureHandler(myAuthenctiationFailureHandler)//设置登录失败的handler
 //	http.httpBasic()
 		.and()
 		.authorizeRequests()

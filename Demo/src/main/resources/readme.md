@@ -38,7 +38,9 @@
 1. 自定义成功的handler
 
 把成功结果写成一个string,使用objectMapper
-把自己写的successhandler注入进来
+把自己写的successhandler注入进来,browserConfig
 
 
 2. 自定义失败的handler
+
+失败和成功类似,不同的是要用一个exception对对象来处理
