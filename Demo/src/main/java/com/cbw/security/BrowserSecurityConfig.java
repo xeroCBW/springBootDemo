@@ -35,27 +35,32 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		//设置认证
 		
-		http.formLogin()
-		.and()
-		.authorizeRequests()
-		.anyRequest()
-		.authenticated();
+//		http.formLogin()
+//		.and()
+//		.authorizeRequests()
+//		.anyRequest()
+//		.authenticated();
 		
 		
 		//设置登录
+		//定义的路径
+		//.loginProcessingUrl("/authentication/form")
 		
-//		http.formLogin()
-//		.loginPage("/authentication/require")
-//		.loginProcessingUrl("/authentication/form")
-////	http.httpBasic()
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/authentication/require",
-//				securityProperties.getBrowser().getLoginPage()).permitAll()
-//		.anyRequest()
-//		.authenticated()
-//		.and()
-//		.csrf().disable();
+		
+		http.formLogin()
+		.loginPage("/login.html")
+		.loginProcessingUrl("/authentication/form")
+//	http.httpBasic()
+		.and()
+		.authorizeRequests()
+		.antMatchers("/login.html")//让请求过去
+		.permitAll()
+		.anyRequest()
+		.authenticated()
+		.and()//跨站防护的功能去掉
+		.csrf()
+		.disable()
+		;
 		
 	}
 	
