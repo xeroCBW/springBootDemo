@@ -20,10 +20,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 //	Consider defining a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' in your configuration.
 
 	//配置了这个,密码就要加解密
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	//自动从properties 来注解
 	@Autowired

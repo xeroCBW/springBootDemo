@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.cbw.mappers.UserMapper;
@@ -22,6 +23,9 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
 	private UserMapper userMapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 
 	@Override
@@ -29,9 +33,11 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
 		
 		logger.info("用户登录名:"+username+"-----开始------");
 		
+		
 		//遇到两个一样的user的时候,需要将user设置成username
 		com.cbw.dto.User user = userMapper.selectByUsername(username);
 		String password = user.getPassword();
+		password = passwordEncoder.encode(password);
 		
 		//根据用户名查找用户信息
 		//实现了user方法
