@@ -17,6 +17,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
+import com.cbw.security.SimpleResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -47,9 +48,10 @@ public class MyAuthenctiationFailureHandler extends SimpleUrlAuthenticationFailu
 		
 			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			response.setContentType("application/json;charset=UTF-8");
-			
 			//设置下,不把所有的消息都放出去,留一部分消息
-			response.getWriter().write(objectMapper.writeValueAsString(exception));
+			
+			SimpleResponse simpleResponse = new SimpleResponse(exception.getMessage());
+			response.getWriter().write(objectMapper.writeValueAsString(simpleResponse));
 		
 	}
 
