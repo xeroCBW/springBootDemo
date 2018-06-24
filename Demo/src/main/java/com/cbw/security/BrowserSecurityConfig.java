@@ -45,15 +45,30 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
 		//设置登录
 		//定义的路径
 		//.loginProcessingUrl("/authentication/form")
+		//这里有点特殊,一定要将文件放在resource中去
 		
+//		http.formLogin()
+//		.loginPage("/login.html")
+//		.loginProcessingUrl("/authentication/form")
+////	http.httpBasic()
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/login.html")//让请求过去
+//		.permitAll()
+//		.anyRequest()
+//		.authenticated()
+//		.and()//跨站防护的功能去掉
+//		.csrf()
+//		.disable()
+//		;
 		
 		http.formLogin()
-		.loginPage("/login.html")
+		.loginPage("/authentication/require")
 		.loginProcessingUrl("/authentication/form")
 //	http.httpBasic()
 		.and()
 		.authorizeRequests()
-		.antMatchers("/login.html")//让请求过去
+		.antMatchers("/authentication/require","/login.html")//让请求过去,否者一直会重定向,导致重定向过多,反而过不去
 		.permitAll()
 		.anyRequest()
 		.authenticated()
